@@ -1,0 +1,25 @@
+<launch>
+	<!-- Launching launch files -->
+
+	<!-- MBS Navigation stack without OUSTER LIDAR-->
+	<!-- Defines the ros topic for the NAVSAT node -->
+	<remap from="gps/fix" to="emlid/fix/simulated" />
+	<!-- Launch file for the navigation stack -->
+	<include file="$(find my_husky_package)/launch/navigation_clone_from_mbs.launch" />
+
+	<!-- Websocket -->
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+
+	<!-- Launching nodes -->
+
+	<!-- Action server -->
+	<node pkg="my_husky_package" type="web_navigation_control_action_server.py" name="action_server" />
+
+	<!-- Simulating loss of GPS signal -->
+	<node pkg="my_husky_package" type="gps_simulate_loss_of_signal.py" name="gps_simulate_loss_of_signal" />
+
+	<!-- Service for saving GPS data on local file-->
+	<node pkg="gps_user_service" type="gps_user_service_server.py" name="gps_user_service_server" />
+
+</launch>

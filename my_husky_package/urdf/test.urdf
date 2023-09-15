@@ -1,0 +1,9 @@
+<robot name="table">
+  <link name="table">
+    <visual>
+    <geometry>
+           <mesh filename="/home/stian/catkin_ws/src/my_husky_package/models/GazeboPolyTunnel.dae"/>
+        </geometry>
+    </visual>
+  </link>
+</robot>

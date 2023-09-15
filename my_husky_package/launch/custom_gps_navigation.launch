@@ -1,0 +1,23 @@
+<launch>
+	<!-- Launching launch files -->
+	
+	<!-- MBS Navigation stack-->
+	<!--<include file="$(find mbs_gps_navigation)/launch/gps_navigation.launch" /> --> 
+		
+	<!-- Websocket -->
+	<!--<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />-->
+
+
+	<!-- Launching nodes -->
+
+	<!-- Action server for navigation-->
+	<node pkg="my_husky_package" type="web_navigation_control_action_server.py" name="action_server" />
+
+	<!-- Relay node for EKF -->
+	<param name="/gps/fix" type="str" value="/emlid/fix" />
+	<node pkg="my_husky_package" type="relay_node_odometry_ekf.py" name="relay_node_for_odometry_to_ekf" />
+
+	<!-- Service for saving GPS data on local file-->
+	<node pkg="gps_user_service" type="gps_user_service_server.py" name="gps_user_service_server" />
+
+</launch>

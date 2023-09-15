@@ -1,0 +1,22 @@
+<launch>
+	<param name="use_sim_time" value="true" />
+
+	<!-- velocity_smoother -->
+	<include file="$(find mbs_utilities)/launch/velocity_smoother.launch" />
+	<!-- Run the GPS driver -->
+	<include file="$(find mbs_utilities)/launch/reach_rs.launch" />
+	<!-- Run the navsat transformer -->
+	<include file="$(find mbs_control)/launch/navsat.launch" />
+	<!-- Run the ekf for map to odom config -->
+	<include file="$(find mbs_control)/launch/ekf_localization.launch" />
+	<!-- Run ouster -->
+	<!--<include file="$(find mbs_utilities)/launch/ouster.launch" />-->
+	<!-- Run point cloud filter -->
+	<include file="$(find mbs_pcl_utilities)/launch/pcl_filter.launch" />
+	<!-- Run the map server -->
+	<include file="$(find mbs_navigation)/launch/include/empty_map_server.launch.xml" />
+	<!-- Run Move Base -->
+	<include file="$(find mbs_navigation)/launch/include/gps_move_base_teb.launch.xml" />
+	<!-- Run AMCL -->
+        <!-- <include file="$(find husky_navigation)/launch/amcl.launch" />-->
+</launch>
